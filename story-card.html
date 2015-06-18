@@ -1,0 +1,161 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-input/paper-textarea.html">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <seed-element></seed-element>
+
+@group Seed Elements
+@element seed-element
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="story-card">
+
+  <style>
+    :host {
+
+      display: block;
+      box-sizing: border-box;
+
+    }
+
+    #story-card {
+
+      min-height: 5em;
+      max-width: 45%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1em;
+
+    }
+
+    #story-card .story-content {
+
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2em;
+      @apply(--test-theme)
+
+    }
+
+    #story-card .story-button-container {
+
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      width: 100%;
+      overflow: auto;
+      white-space: nowrap;
+
+    }
+
+    #story-card .story-button-container .fab-button {
+
+      float: right;
+      display: inline-block;
+      margin-left: 0.5em;
+      margin-bottom: 0.1em;
+      --paper-fab-background: rgb(233, 74, 47);
+
+    }
+
+  </style>
+
+  <template>
+
+    <paper-material id="story-card" elevation="3">
+
+      <div class="story-button-container">
+
+        <paper-fab icon="delete" class="fab-button" elevated="2" disabled$="[[signedIn]]" animated></paper-fab>
+        
+        <paper-fab icon="create" class="fab-button" elevated="2" disabled$="[[signedIn]]" on-click="editClickHandler" animated></paper-fab>
+
+      </div>
+
+      <span class="story-content" hidden$="[[!editing]]">{{storyContent}}</span>
+
+      <paper-textarea label="Edit Card" value="{{storyContent}}" hidden$="[[editing]]"></paper-textarea>
+
+    </paper-material>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'story-card',
+
+    properties: {
+
+      storyContent: {
+
+        type: String,
+        value: ''
+
+      },
+      signedIn: {
+
+        type: Boolean,
+        value: false
+
+      }
+
+    },
+
+    // Element Lifecycle
+
+    ready: function() {
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+      this.editing = true;
+    },
+
+    attached: function() {
+      // `attached` fires once the element and its parents have been inserted
+      // into a document.
+      //
+      // This is a good place to perform any work related to your element's
+      // visual state or active behavior (measuring sizes, beginning animations,
+      // loading resources, etc).
+    },
+
+    detached: function() {
+      // The analog to `attached`, `detached` fires when the element has been
+      // removed from a document.
+      //
+      // Use this to clean up anything you did in `attached`.
+    },
+
+    editClickHandler: function () {
+
+      this.editing = !this.editing;
+
+    }
+
+  });
+
+</script>
