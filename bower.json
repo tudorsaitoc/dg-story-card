@@ -19,7 +19,7 @@
     "/demo/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.2",
+    "polymer": "polymer/polymer#~1.0.0",
     "paper-fab": "PolymerElements/paper-fab#1.0.0",
     "paper-input": "PolymerElements/paper-input#1.0.0"
   },

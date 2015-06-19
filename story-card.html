@@ -38,11 +38,12 @@ Example:
 
     #story-card {
 
-      min-height: 5em;
-      max-width: 45%;
+      min-height: 10em;
+      max-width: 65%;
       margin-left: auto;
       margin-right: auto;
       padding: 1em;
+      #apply(--story-card-theme)
 
     }
 
@@ -50,7 +51,8 @@ Example:
 
       font-family: 'Roboto', sans-serif;
       font-size: 1.2em;
-      @apply(--test-theme)
+      word-wrap: break-word;
+      @apply(--story-card-content-theme);
 
     }
 
@@ -62,6 +64,7 @@ Example:
       width: 100%;
       overflow: auto;
       white-space: nowrap;
+      @apply(--story-card-button-container-theme);
 
     }
 
@@ -71,6 +74,17 @@ Example:
       display: inline-block;
       margin-left: 0.5em;
       margin-bottom: 0.1em;
+      --paper-fab-background: rgb(233, 74, 47);
+
+    }
+
+    #story-card .save-fab-button {
+
+      float: right;
+      display: inline-block;
+      margin-left: 0.5em;
+      padding-bottom: 1em;
+      margin-bottom: 5em;
       --paper-fab-background: rgb(233, 74, 47);
 
     }
@@ -87,11 +101,13 @@ Example:
         
         <paper-fab icon="create" class="fab-button" elevated="2" disabled$="[[signedIn]]" on-click="editClickHandler" animated></paper-fab>
 
+        <paper-fab icon="save" class="fab-button" elevated="2" disabled$="[[signedIn]]" hidden$="[[editing]]" on-click="saveContent()" animated></paper-fab>
+
       </div>
 
-      <span class="story-content" hidden$="[[!editing]]">{{storyContent}}</span>
+      <span class="story-content" hidden$="[[!editing]]">[[storyContent]]</span>
 
-      <paper-textarea label="Edit Card" value="{{storyContent}}" hidden$="[[editing]]"></paper-textarea>
+      <paper-textarea label="Edit Card" value="{{storyContent}}" hidden$="[[editing]]" maxlength="500"></paper-textarea> 
 
     </paper-material>
 
@@ -118,6 +134,12 @@ Example:
         type: Boolean,
         value: false
 
+      },
+      uid: {
+
+        type: String,
+        value: ''
+
       }
 
     },
@@ -134,25 +156,21 @@ Example:
       this.editing = true;
     },
 
-    attached: function() {
-      // `attached` fires once the element and its parents have been inserted
-      // into a document.
-      //
-      // This is a good place to perform any work related to your element's
-      // visual state or active behavior (measuring sizes, beginning animations,
-      // loading resources, etc).
-    },
-
-    detached: function() {
-      // The analog to `attached`, `detached` fires when the element has been
-      // removed from a document.
-      //
-      // Use this to clean up anything you did in `attached`.
-    },
-
     editClickHandler: function () {
 
       this.editing = !this.editing;
+
+    },
+
+    saveClicked: function () {
+
+      this.fire( 'story-card-save-content', { 'uid': this.uid, 'content': this.storyContent } );
+
+    },
+
+    deleteClicked: function () {
+
+      this.fire( 'story-card-delete-clicked', { 'uid': this.uid } )
 
     }
 
