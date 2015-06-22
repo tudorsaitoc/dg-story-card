@@ -1,6 +1,6 @@
 {
   "name": "story-card",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "authors": [
     "Anonymous <anonymous@example.com>"
   ],
@@ -21,7 +21,8 @@
   "dependencies": {
     "polymer": "polymer/polymer#~1.0.0",
     "paper-fab": "PolymerElements/paper-fab#1.0.0",
-    "paper-input": "PolymerElements/paper-input#1.0.0"
+    "paper-input": "PolymerElements/paper-input#1.0.0",
+    "dg-character-counter": "*"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

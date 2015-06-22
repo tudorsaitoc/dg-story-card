@@ -28,16 +28,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <p>An example of <code>&lt;story-card&gt;</code>:</p>
 
-      <story-card class="story-card" story-content="[[storyContent]]"></story-card>
+      <story-card class="story-card" story-content="[[storyContent]]" on-story-card-save-content="saveClicked" on-story-card-delete-clicked="deleteClicked"></story-card>
 
     </template>
 
     <script>
 
       ( function ( document ) {
+        'use strict';
 
         var app = document.querySelector( '#app' );
         app.storyContent = "Test content";
+
+        /**
+         * Save button clicked
+         * @param  {[type]} e [description]
+         * @return {[type]}   [description]
+         */
+        app.saveClicked = function ( e ) {
+
+          console.log( 'save clicked' );
+          console.log( e );
+
+        };
+
+        /**
+         * Delete button clicked
+         * @param  {[type]} e [description]
+         * @return {[type]}   [description]
+         */
+        app.deleteClicked = function ( e ) {
+
+          console.log( 'delete clicked' );
+          console.log( e );
+
+        };
 
       })( document );
 

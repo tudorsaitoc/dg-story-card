@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-fab/paper-fab.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../paper-input/paper-textarea.html">
+<link rel="import" href="../dg-character-counter/character-counter.html">
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <!--
@@ -36,7 +37,7 @@ Example:
 
     }
 
-    #story-card {
+    .story-card-style {
 
       min-height: 10em;
       max-width: 65%;
@@ -47,7 +48,7 @@ Example:
 
     }
 
-    #story-card .story-content {
+    .story-content {
 
       font-family: 'Roboto', sans-serif;
       font-size: 1.2em;
@@ -56,7 +57,7 @@ Example:
 
     }
 
-    #story-card .story-button-container {
+    .story-button-container {
 
       font-family: 'Roboto', sans-serif;
       font-size: 1.2em;
@@ -68,7 +69,7 @@ Example:
 
     }
 
-    #story-card .story-button-container .fab-button {
+    .fab-button {
 
       float: right;
       display: inline-block;
@@ -78,14 +79,9 @@ Example:
 
     }
 
-    #story-card .save-fab-button {
+    character-counter {
 
-      float: right;
-      display: inline-block;
-      margin-left: 0.5em;
-      padding-bottom: 1em;
-      margin-bottom: 5em;
-      --paper-fab-background: rgb(233, 74, 47);
+      padding-top: 0.5em;
 
     }
 
@@ -93,21 +89,23 @@ Example:
 
   <template>
 
-    <paper-material id="story-card" elevation="3">
+    <paper-material id="story-card" elevation="2" class="story-card-style">
 
       <div class="story-button-container">
 
-        <paper-fab icon="delete" class="fab-button" elevated="2" disabled$="[[signedIn]]" animated></paper-fab>
+        <paper-fab icon="delete" class="fab-button" disabled$="[[signedIn]]" on-click="deleteClicked" animated></paper-fab>
         
-        <paper-fab icon="create" class="fab-button" elevated="2" disabled$="[[signedIn]]" on-click="editClickHandler" animated></paper-fab>
+        <paper-fab icon="create" class="fab-button" disabled$="[[signedIn]]" on-click="editClickHandler" animated></paper-fab>
 
-        <paper-fab icon="save" class="fab-button" elevated="2" disabled$="[[signedIn]]" hidden$="[[editing]]" on-click="saveContent()" animated></paper-fab>
+        <paper-fab icon="save" class="fab-button" disabled$="[[signedIn]]" hidden$="[[editing]]" on-click="saveClicked" animated></paper-fab>
 
       </div>
 
       <span class="story-content" hidden$="[[!editing]]">[[storyContent]]</span>
 
       <paper-textarea label="Edit Card" value="{{storyContent}}" hidden$="[[editing]]" maxlength="500"></paper-textarea> 
+
+      <character-counter input-text="[[storyContent]]" max-characters="500" hidden$="[[editing]]"></character-counter>
 
     </paper-material>
 
@@ -117,6 +115,7 @@ Example:
 
 <script>
 
+  'use strict';
   Polymer({
 
     is: 'story-card',
