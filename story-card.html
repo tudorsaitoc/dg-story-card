@@ -134,10 +134,16 @@ Example:
         value: false
 
       },
-      uid: {
+      cid: {
 
         type: String,
         value: ''
+
+      },
+      sortNumber: {
+
+        type: Number
+        value: -1
 
       }
 
@@ -163,13 +169,13 @@ Example:
 
     saveClicked: function () {
 
-      this.fire( 'story-card-save-content', { 'uid': this.uid, 'content': this.storyContent } );
+      this.fire( 'story-card-save-content', { 'cid': this.cid, 'content': this.storyContent, 'sortNumber': this.sortNumber } );
 
     },
 
     deleteClicked: function () {
 
-      this.fire( 'story-card-delete-clicked', { 'uid': this.uid } )
+      this.fire( 'story-card-delete-clicked', { 'cid': this.cid } )
 
     }
 
