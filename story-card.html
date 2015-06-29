@@ -93,11 +93,11 @@ Example:
 
       <div class="story-button-container">
 
-        <paper-fab icon="delete" class="fab-button" disabled$="[[signedIn]]" on-click="deleteClicked" animated></paper-fab>
+        <paper-fab icon="delete" class="fab-button" disabled$="[[!signedIn]]" on-click="deleteClicked" animated></paper-fab>
         
-        <paper-fab icon="create" class="fab-button" disabled$="[[signedIn]]" on-click="editClickHandler" animated></paper-fab>
+        <paper-fab icon="create" class="fab-button" disabled$="[[!signedIn]]" on-click="editClickHandler" animated></paper-fab>
 
-        <paper-fab icon="save" class="fab-button" disabled$="[[signedIn]]" hidden$="[[editing]]" on-click="saveClicked" animated></paper-fab>
+        <paper-fab icon="save" class="fab-button" disabled$="[[!signedIn]]" hidden$="[[editing]]" on-click="saveClicked" animated></paper-fab>
 
       </div>
 
