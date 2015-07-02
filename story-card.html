@@ -101,11 +101,11 @@ Example:
 
       </div>
 
-      <span class="story-content" hidden$="[[!editing]]">[[storyContent]]</span>
+      <span class="story-content" hidden$="[[!editing]]">[[storyContent.content]]</span>
 
-      <paper-textarea label="Edit Card" value="{{storyContent}}" hidden$="[[editing]]" maxlength="500"></paper-textarea> 
+      <paper-textarea label="Edit Card" value="{{storyContent.content}}" hidden$="[[editing]]" maxlength="500"></paper-textarea> 
 
-      <character-counter input-text="[[storyContent]]" max-characters="500" hidden$="[[editing]]"></character-counter>
+      <character-counter input-text="[[storyContent.content]]" max-characters="500" hidden$="[[editing]]"></character-counter>
 
     </paper-material>
 
@@ -124,26 +124,13 @@ Example:
 
       storyContent: {
 
-        type: String,
-        value: ''
+        type: Object,
 
       },
       signedIn: {
 
         type: Boolean,
         value: false
-
-      },
-      cid: {
-
-        type: String,
-        value: ''
-
-      },
-      sortNumber: {
-
-        type: Number,
-        value: -1
 
       }
 
@@ -169,7 +156,7 @@ Example:
 
     saveClicked: function () {
 
-      this.fire( 'story-card-save-content', { 'cid': this.cid, 'content': this.storyContent, 'sortNumber': this.sortNumber } );
+      this.fire( 'story-card-save-content', { 'content': this.storyContent } );
 
       this.editClickHandler();
 
@@ -177,7 +164,7 @@ Example:
 
     deleteClicked: function () {
 
-      this.fire( 'story-card-delete-clicked', { 'cid': this.cid } )
+      this.fire( 'story-card-delete-clicked', { 'content': this.storyContent } )
 
     }
 
