@@ -92,18 +92,14 @@ Example:
     <paper-material id="story-card" elevation="2" class="story-card-style">
 
       <div class="story-button-container">
-      
-        <paper-fab icon="create" class="fab-button" disabled$="[[!signedIn]]" on-click="editClickHandler" animated></paper-fab>
 
-        <paper-fab icon="save" class="fab-button" disabled$="[[!signedIn]]" hidden$="[[editing]]" on-click="saveClicked" animated></paper-fab>
+        <paper-fab icon="save" class="fab-button" on-click="saveClicked" animated></paper-fab>
 
       </div>
 
-      <span class="story-content" hidden$="[[!editing]]">[[storyContent.content]]</span>
+      <paper-textarea label="Edit Card" value="{{storyContent.content}}" maxlength="500"></paper-textarea> 
 
-      <paper-textarea label="Edit Card" value="{{storyContent.content}}" hidden$="[[editing]]" maxlength="500"></paper-textarea> 
-
-      <character-counter input-text="[[storyContent.content]]" max-characters="500" hidden$="[[editing]]"></character-counter>
+      <character-counter input-text="[[storyContent.content]]" max-characters="500" ></character-counter>
 
     </paper-material>
 
@@ -124,12 +120,6 @@ Example:
 
         type: Object,
 
-      },
-      signedIn: {
-
-        type: Boolean,
-        value: false
-
       }
 
     },
@@ -143,20 +133,12 @@ Example:
       //
       // This is the point where you should make modifications to the DOM (when
       // necessary), or kick off any processes the element wants to perform.
-      this.editing = true;
-    },
-
-    editClickHandler: function () {
-
-      this.editing = !this.editing;
 
     },
 
     saveClicked: function () {
 
       this.fire( 'story-card-save-content', { 'content': this.storyContent } );
-
-      this.editClickHandler();
 
     },
 
