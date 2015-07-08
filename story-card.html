@@ -92,9 +92,7 @@ Example:
     <paper-material id="story-card" elevation="2" class="story-card-style">
 
       <div class="story-button-container">
-
-        <paper-fab icon="delete" class="fab-button" disabled$="[[!signedIn]]" on-click="deleteClicked" animated></paper-fab>
-        
+      
         <paper-fab icon="create" class="fab-button" disabled$="[[!signedIn]]" on-click="editClickHandler" animated></paper-fab>
 
         <paper-fab icon="save" class="fab-button" disabled$="[[!signedIn]]" hidden$="[[editing]]" on-click="saveClicked" animated></paper-fab>
@@ -161,12 +159,6 @@ Example:
       this.editClickHandler();
 
     },
-
-    deleteClicked: function () {
-
-      this.fire( 'story-card-delete-clicked', { 'content': this.storyContent } )
-
-    }
 
   });
 
