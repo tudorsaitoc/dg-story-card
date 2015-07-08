@@ -97,9 +97,9 @@ Example:
 
       </div>
 
-      <paper-textarea label="Edit Card" value="{{storyContent.content}}" maxlength="500"></paper-textarea> 
+      <paper-textarea label="Edit Card" value="{{storyContent}}" maxlength="500"></paper-textarea> 
 
-      <character-counter input-text="[[storyContent.content]]" max-characters="500" ></character-counter>
+      <character-counter input-text="[[storyContent]]" max-characters="500" ></character-counter>
 
     </paper-material>
 
@@ -118,7 +118,7 @@ Example:
 
       storyContent: {
 
-        type: Object,
+        type: String,
 
       }
 
