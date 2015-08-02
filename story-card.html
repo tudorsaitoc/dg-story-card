@@ -11,8 +11,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-fab/paper-fab.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-input/iron-input.html">
 <link rel="import" href="../paper-input/paper-textarea.html">
-<link rel="import" href="../dg-character-counter/character-counter.html">
+<link rel="import" href="../paper-input/paper-input-container.html">
+<link rel="import" href="../paper-input/paper-input-char-counter.html">
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <!--
@@ -97,9 +99,13 @@ Example:
 
       </div>
 
-      <paper-textarea label="Edit Card" value="{{storyContent}}" maxlength="500"></paper-textarea> 
+      <paper-input-container>
 
-      <character-counter input-text="[[storyContent]]" max-characters="500" ></character-counter>
+        <input is="iron-input" label="Edit Card" bind-value="{{storyContent}}" maxlength="500">
+
+        <paper-input-char-counter></paper-input-char-counter>
+
+      </paper-input-container>
 
     </paper-material>
 

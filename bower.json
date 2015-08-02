@@ -21,8 +21,7 @@
   "dependencies": {
     "polymer": "polymer/polymer#~1.0.0",
     "paper-fab": "PolymerElements/paper-fab#1.0.0",
-    "paper-input": "PolymerElements/paper-input#1.0.0",
-    "dg-character-counter": "*"
+    "paper-input": "PolymerElements/paper-input#1.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
